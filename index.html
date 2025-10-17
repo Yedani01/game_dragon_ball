@@ -1,39 +1,243 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicaciones Web Front End</title>
+    <link rel="icon" type="imagen/png" href="public/img/esfera.ico">
+    <!-- <link rel="stylesheet" href="./public/css/main.css"> -->
+    <title>Dragon Ball GAME</title>
 </head>
+
 <body>
     <div class="container">
-        <form class="row justify-content-center">
-            <div class="col-md-5">
-                <label for="nombre">Nombre</label>
-                <input id="nombre" class="form-control mb-3" type="text">
-                <label for="semestre">Semestr</label>
-                <select class="form-control mb-3" id="semestre">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select>
-                <label for="carrera">Carrera</label>
-                <input id="carrera" class="form-control mb-3" type="text">
-                <label for="horas">Horas</label>
-                <input id="horas" class="form-control mb-3" type="text">
-                <button type="button" id="btn_agregar" class="btn btn-primary w-100">Añadir</button>
+        <h1 class="text-center">Dragon GAME</h1>
+        <hr class="text-center">
+        <div class="row justify-content-around" id="seleccion_jugadores">
+            <div class="col-md-5" id="jugador1">
+                <input type="text" id="username_py1" class="form-control mb-3" placeholder="
+                Nombre player 1">
+                <div class="row mb-3" id="seleccion_personaje1">
+                    <div class="col-3">
+                        <button class="btn btn-danger rounded-circle">
+                            <img src="./public/img/seleccion/01.png" alt="personaje 1" class="img-fluid mt-2 mb-2"
+                                title="Veguito">
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-danger rounded-circle">
+                            <img src="./public/img/seleccion/03.png" alt="personaje 3" class="img-fluid mt-2 mb-2"
+                                title="Trunks">
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-danger rounded-circle">
+                            <img src="./public/img/seleccion/05.png" alt="personaje 5" class="img-fluid mt-2 mb-2"
+                                title="Goku">
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-danger rounded-circle">
+                            <img src="./public/img/seleccion/06.png" alt="personaje 6" class="img-fluid mt-2 mb-2"
+                                title="Gohan">
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-danger rounded-circle">
+                            <img src="./public/img/seleccion/09.png" alt="personaje 6" class="img-fluid mt-2 mb-2"
+                                title="Buu">
+                        </button>
+                    </div>
+                </div>
+                <button id="btn_py1" class="btn btn-danger w-100 mb-3">Aceptar</button>
             </div>
-            <div class="col-md-5">
-                <p id="contenido" class="lead"></p>
+            <div class="col-md-5" id="jugador2">
+                <input type="text" id="username_py2" class="form-control mb-3" placeholder="
+                Nombre player 2">
+                <div class="row mb-3" id="seleccion_personaje2">
+                    <div class="col-3">
+                        <button class="btn btn-primary rounded-circle">
+                            <img src="./public/img/seleccion/02.png" alt="personaje 2" class="img-fluid mt-2 mb-2"
+                                title="Veguetta">
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary rounded-circle">
+                            <img src="./public/img/seleccion/04.png" alt="personaje 4" class="img-fluid mt-2 mb-2"
+                                title="Pikoro">
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary rounded-circle">
+                            <img src="./public/img/seleccion/07.png" alt="personaje 7" class="img-fluid mt-2 mb-2"
+                                title="Gogueta">
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary rounded-circle">
+                            <img src="./public/img/seleccion/08.png" alt="personaje 8" class="img-fluid mt-2 mb-2"
+                                title="Cell">
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary rounded-circle">
+                            <img src="./public/img/seleccion/10.png" alt="personaje 8" class="img-fluid mt-2 mb-2"
+                                title="Freezer">
+                        </button>
+                    </div>
+                </div>
+                <button id="btn_py2" class="btn btn-primary w-100 mb-3">Aceptar</button>
             </div>
-        </form>
-    </div>  
-    <script src="./controller/index.js"></script>  
+        </div>
+
+        <div class="row justify-content-around d-none" id="batalla">
+            <div class="col-md-5 text-center">
+                <h2 id="nombre_personaje1"></h2>
+                <p id="username1"></p>
+                <hr class="text-danger">
+
+                <div class="row">
+                    <div class="stat">
+                        <span class="label text-warning fw-bold mt-2">Vida</span>
+                        <div class="progress-container">
+                            <div id="vida1" class="progress-bar bg-success" style="width: 100%;">1000 / 1000</div>
+                        </div>
+                    </div>
+
+                    <div class="stat mb-3">
+                        <span class="label text-warning fw-bold mt-2">Semillas</span>
+                        <div class="progress-container">
+                            <div id="semillas1" class="progress-bar bg-warning" style="width: 0%;">0 / 2</div>
+                        </div>
+                    </div>
+
+                    <div class="stat mb-3">
+                        <span class="label text-warning fw-bold mt-2">Energía</span>
+                        <div class="progress-container">
+                            <div id="energia1" class="progress-bar bg-warning" style="width: 100%;">1000 / 1000</div>
+                        </div>
+                    </div>
+
+                    <div class="stat mb-3">
+                        <span class="label text-warning fw-bold mt-2">Ki</span>
+                        <div class="progress-container">
+                            <div id="ki1" class="progress-bar bg-danger" style="width: 100%;">1000 / 1000</div>
+                        </div>
+                    </div>
+                </div>
+
+                <img src="" class="mx-auto" width="40%" id="img_personaje1">
+
+                <div class="row mt-3">
+                    <div class="col-6 text-end">
+                        <button id="btn_ak_basico1" class="btn btn-primary px-4">Atk Básico</button>
+                    </div>
+                    <div class="col-6 text-start">
+                        <button id="btn_ak_especial1" class="btn btn-danger px-4">Atk Especial</button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6 text-end">
+                        <button id="btn_cargar_ki1" class="btn btn-warning px-4">Cargar Ki</button>
+                    </div>
+                    <div class="col-6 text-start">
+                        <button id="btn_semilla1" class="btn btn-success px-4">Semilla Ermitaño</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 align-self-center">
+                <h2 class="text-center display-3">VS</h2>
+            </div>
+
+            <div class="col-md-5 text-center">
+                <h2 id="nombre_personaje2"></h2>
+                <p id="username2"></p>
+                <hr class="text-danger">
+
+                <div class="row">
+                    <div class="stat mb-3">
+                        <span class="label text-warning fw-bold mt-2">Vida</span>
+                        <div class="progress-container">
+                            <div id="vida2" class="progress-bar bg-success" style="width: 100%;">1000 / 1000</div>
+                        </div>
+                    </div>
+
+                    <div class="stat mb-3">
+                        <span class="label text-warning fw-bold mt-2">Semillas</span>
+                        <div class="progress-container">
+                            <div id="semillas2" class="progress-bar bg-warning" style="width: 0%;">0 / 2</div>
+                        </div>
+                    </div>
+
+                    <div class="stat mb-3">
+                        <span class="label text-warning fw-bold mt-2">Energía</span>
+                        <div class="progress-container">
+                            <div id="energia2" class="progress-bar bg-warning" style="width: 100%;">1000 / 1000</div>
+                        </div>
+                    </div>
+
+                    <div class="stat mb-3">
+                        <span class="label text-warning fw-bold mt-2">Ki</span>
+                        <div class="progress-container">
+                            <div id="ki2" class="progress-bar bg-danger" style="width: 100%;">1000 / 1000</div>
+                        </div>
+                    </div>
+
+                </div>
+                <img src="" class="mx-auto" width="40%" id="img_personaje2">
+                <div class="row mt-3">
+                    <div class="col-6 text-end">
+                        <button id="btn_ak_basico2" class="btn btn-primary px-4">Atk Básico</button>
+                    </div>
+                    <div class="col-6 text-start">
+                        <button id="btn_ak_especial2" class="btn btn-danger px-4">Atk Especial</button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6 text-end">
+                        <button id="btn_cargar_ki2" class="btn btn-warning px-4">Cargar Ki</button>
+                    </div>
+                    <div class="col-6 text-start">
+                        <button id="btn_semilla2" class="btn btn-success px-4">Semilla Ermitaño</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+   
+<div id="vista_historial" class="container d-none text-center mt-5">
+  <h1 class="text-warning mb-4"> Historial de Batallas</h1>
+  
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <table class="table table-bordered table-dark table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Ganadoooooooooor</th>
+            <th>Perdedooooooooor</th>
+          </tr>
+        </thead>
+        <tbody id="tabla_historial"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h4 id="total1" class="text-danger">Jugador 1: victorias</h4>
+    <h4 id="total2" class="text-primary">Jugador 2: victorias</h4>
+  </div>
+
+  <button id="btn_volver_menu" class="btn btn-warning mt-4 px-4"> Volver al menú principal</button> 
+</div>
+
+
+
+
+    
+    <script src="./bundle.js"></script>
 </body>
+
 </html>
